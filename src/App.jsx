@@ -1,69 +1,20 @@
 import Header from "./components/Header/header";
-import { CORE_CONCEPTS } from "./data";
-import CoreConcept from "./components/CoreConcept";
-import TabButton from "./components/TabButton";
-import { useState } from "react";
-import { EXAMPLES } from "./data";
-
+import Examples from "./components/Examples.jsx"
+import CoreConceptes from "./components/CoreConceptes.jsx"
 
 
 function App() {
-  const [selectedTopic , setSelectedTopic] = useState ()
+  
 
-  function handelSelect(selectedButton){
-      setSelectedTopic(selectedButton)
-      // console.log(selectedTopic );
-      
-   } 
-
-   let tabContant = <p>Pleas click a Button</p>
-
-   if (selectedTopic) {
-    tabContant = 
-    ( (<div id="tab-content">
-      <h3>{EXAMPLES[selectedTopic].title}</h3>
-      <p>{EXAMPLES[selectedTopic].description}</p>
-      <pre>
-        <code>{EXAMPLES[selectedTopic].code}</code>
-      </pre>
-    </div>)
-
-    )
-    
-   }
- 
+  
   return (
-    <div>
+    <>
       <Header/>
-
       <main>
-        <section id="core-concepts">
-        <h2>core concepts</h2>
-          <ul>
-            <CoreConcept {...CORE_CONCEPTS[0]}/>
-            <CoreConcept {...CORE_CONCEPTS[1]}/>
-            <CoreConcept {...CORE_CONCEPTS[2]}/>
-            <CoreConcept {...CORE_CONCEPTS[3]}/>
-
-          </ul>
-        </section>
-        <section id="examples">
-          <h2>Examples</h2>
-          <menu>
-            <TabButton  isSelected={selectedTopic === "components"} 
-            onSelect={()=>{handelSelect("components")} }> Components </TabButton>
-            <TabButton  isSelected={selectedTopic === "props"}
-             onSelect={()=>{handelSelect("props")}}> Props </TabButton>
-            <TabButton  isSelected={selectedTopic === "jsx"} 
-            onSelect={()=>{handelSelect("jsx")}}> Jsx </TabButton>
-            <TabButton  isSelected={selectedTopic === "state"} 
-            onSelect={()=>{handelSelect("state")}}> State </TabButton>
-          </menu>
-          {tabContant}
-                 
-        </section>
+       <CoreConceptes/>
+        <Examples/>   
       </main>
-    </div> 
+    </> 
   );
 }
 
